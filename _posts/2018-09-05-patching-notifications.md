@@ -36,23 +36,17 @@ So I have my dates, next I had to determine which servers were going to be invol
 
 
 ~~~
-$searchbasesat = "ou=clustered - patch 3rd saturday,ou=corporate prod,dc=corp,dc=com",
-"ou=patch 3rd saturday,ou=dr servers,dc=corp,dc=com",
-"ou=mgmt,ou=dr servers,dc=corp,dc=com",
-"ou=mgmt,ou=office1 servers,dc=corp,dc=com",
-"ou=mgmt,ou=office2 servers,dc=corp,dc=com",
-"ou=mgmt,ou=office3 servers,dc=corp,dc=com",
-"ou=dcs - patch 3rd saturday,ou=domain controllers,dc=corp,dc=com"
+$searchbasesat ="ou=mgmt-sat,ou=dr servers,dc=MyDomain,dc=com",
+"ou=mgmt-sat,ou=office1 servers,dc=MyDomain,dc=com",
+"ou=mgmt-sat,ou=office2 servers,dc=MyDomain,dc=com",
+"ou=mgmt-sat,ou=office3 servers,dc=MyDomain,dc=com"
 
-$searchbasesun = "ou=clustered - patch 3rd sunday,ou=corporate prod,dc=corp,dc=com",
-"ou=non-clustered - patch 3rd sunday,ou=corporate prod,dc=corp,dc=com",
-"ou=patch 3rd sunday,ou=dr servers,dc=corp,dc=com",
-"ou=non-clustered servers - patch 3rd sunday,ou=office1 servers,dc=corp,dc=com",
-"ou=non-clustered servers - patch 3rd sunday,ou=office2 prod servers,dc=corp,dc=com",
-"ou=domain controllers - patch 3rd sunday,ou=domain controllers,dc=corp,dc=com"
+$searchbasesun ="ou=mgmt-sun,ou=dr servers,dc=MyDomain,dc=com",
+"ou=mgmt-sun,ou=office1 servers,dc=MyDomain,dc=com",
+"ou=mgmt-sun,ou=office2 prod servers,dc=MyDomain,dc=com"
 
-$searchbasedev = "ou=dev servers - patch 2nd sunday,ou=corporate dev,dc=corp,dc=com",
-"ou=dev servers - patch 2nd sunday,ou=office2 dev servers,dc=corp,dc=niic,dc=com"
+$searchbasedev = "ou=mgmt-sun,ou=office1 dev,dc=MyDomain,dc=com",
+"ou=mgmt-sun,ou=office2 dev,dc=MyDomain,dc=com"
 ~~~
 
 
