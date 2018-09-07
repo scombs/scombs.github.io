@@ -115,14 +115,14 @@ Send-MailMessage @messageparameters -BodyAsHtml
 ~~~
 
 
-That's it, the PowerShell work is done. Now you can set this up on your job scheduler server to run on the day you want. For me I'm just using Windows Task Scheduler with a service account with the appropriate permissions. The benefit in using Windows Task Scheduler is that every Windows admin should know how to use it, this allows me to configure it and not worry about others being unable to manage jobs. This will handle your initial communication but I divided out the reminder since we don't need to do double duty of querying AD a second time. You'll be able to grab the primary and reminder scripts from my PowerShell repo. 
+That's it, the PowerShell work is done. Now you can set this up on your job scheduler server to run on the day you want. For me I'm just using Windows Task Scheduler with a service account with the appropriate permissions. The benefit in using Windows Task Scheduler is that every Windows admin should know how to use it, this allows me to configure it and not worry about others being unable to manage jobs. This will handle your initial communication but I divided out the reminder since we don't need to do double duty of querying AD a second time. My second task is to combine them into one task, more than likely with an if else statement based on the date. You'll be able to grab the primary and reminder scripts from my PowerShell repo which I'll link at the bottom. 
 
 With this in place, it saves over an hour of work a month of manual intervention and it includes a nice piece of mind that things will just work. 
 
-First meaningful blogging experience, first time using Jekyll, first time using markdown in a more meaningful way and the first time sharing my everyday PowerShell experience. Today's a good day. 
+First meaningful blogging experience, first time using Jekyll, first time using markdown in a more robust way and the first time sharing my everyday PowerShell experience. Today's a good day. 
 
 Links:
 
-Tim Curwick - https://www.madwithpowershell.com/2014/10/calculating-patch-tuesday-with.html
+Tim Curwick - [https://www.madwithpowershell.com/2014/10/calculating-patch-tuesday-with.html](https://www.madwithpowershell.com/2014/10/calculating-patch-tuesday-with.html)
 
-My PowerShell Repo - https://github.com/scombs/PowerShell
+My PowerShell Repo - [https://github.com/scombs/PowerShell](https://github.com/scombs/PowerShell)
