@@ -11,7 +11,7 @@ One of the first tasks I took on when I started at my new employer was to look t
 As you can see I had my work cut out for me, all I had to do was get to work on a solution. I've worked with PowerShells Send-MailMessage a few times before but mostly for testing SMTP and sending static messages. This on the other hand was going to be a bit different due to the scheduling of the emails and the times they were sent out. The first notification would be sent out the week of patch Tuesday specifying the date of the upcoming weekend and also the following weekend for Production. That's where this little piece of code helped out. 
 
 
-~~~
+~~~powershell
 $BaseDate = ( Get-Date -Day 12 ).Date
 $PatchTuesday = $BaseDate.AddDays( 2 - [int]$BaseDate.DayOfWeek )
 ~~~
@@ -20,7 +20,7 @@ $PatchTuesday = $BaseDate.AddDays( 2 - [int]$BaseDate.DayOfWeek )
 Tim Curwick has a nice write up on how this works so I won't dive into it here but I'll link it at the bottom. Now that we have our base patch Tuesday we can calculate the other dates.
 
 
-~~~
+~~~powershell
 $datesat=$patchtuesday.adddays(11)
 $datesat=$datesat.ToString('MM-dd-yyyy')
 
@@ -35,7 +35,7 @@ $datedev=$datedev.ToString('MM-dd-yyyy')
 So I have my dates, next I had to determine which servers were going to be involved in patching. With the way our naming structure is a mix of new and legacy names it would be a nightmare to generate reports based on that. The next best thing that came to mind is using the AD structure and query servers based on OU. This works well here since each patching day has it's own OU and is divided up by site location. This may seem a bit messy but it works for day and location based patching. What we end up with are variables that are going to be our search base for that days patching. 
 
 
-~~~
+~~~powershell
 $searchbasesat ="ou=mgmt-sat,ou=dr servers,dc=MyDomain,dc=com",
 "ou=mgmt-sat,ou=office1 servers,dc=MyDomain,dc=com",
 "ou=mgmt-sat,ou=office2 servers,dc=MyDomain,dc=com",
@@ -53,7 +53,7 @@ $searchbasedev = "ou=mgmt-sun,ou=office1 dev,dc=MyDomain,dc=com",
 We have our dates and we have our OUs where the servers reside, next we need to query those OUs and generate a report. The simplest solution was passing each of these variables into foreach loops and outputting the names to a csv. This gives us a CSV for each day so the department can flip through it and also have a record of what was patched and when. 
 
 
-~~~
+~~~powershell
 #temp directory to hold the files
 $loc = "c:\temp"
 
@@ -80,7 +80,7 @@ $forloopdev | export-csv "$loc\DevSunReboots.csv"
 We also have servers residing on a DMZ, we haven't talked much about that but here we'll need to include those servers in the list. I have a similar process that mirrors the above that sits on a DMZ box to query AD and then copies the CSVs to the job scheduler server. That process is set to run 15 minutes before this one which will then allow us to run the following code block to combine the appropriate csvs. 
 
 
-~~~
+~~~powershell
 @(import-csv "$loc\ProdSunReboots.csv") + @(import-csv "$loc\dmzfiles\dmzprodsunreboots.csv") | sort-object name | export-csv "$loc\Production-Sunday.csv"
 @(import-csv "$loc\ProdSatReboots.csv") + @(import-csv "$loc\dmzfiles\dmzprodsatreboots.csv") | sort-object name | export-csv "$loc\Production-Saturday.csv"
 @(import-csv "$loc\DevSunReboots.csv") + @(import-csv "$loc\dmzfiles\dmzdevsunreboots.csv") | sort-object name |export-csv "$loc\Development-Sunday.csv"
@@ -90,7 +90,7 @@ We also have servers residing on a DMZ, we haven't talked much about that but he
 Our reports are generated and ready to go, which brings us to the finale, sending them to the department. Here's where Send-MailMessage comes into play. With this command we can utilize spatting to make our variables easy to define and also allows us to easily format our body using HTML.
 
 
-~~~
+~~~powershell
 $messageparameters = @{
 subject="PLEASE REVIEW: Microsoft Security Updates for All Servers - Scheduled Reboots"
 body ="
