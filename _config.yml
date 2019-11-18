@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: Combs.Technology
+title: scombs.github.io
 
 # Short description of your site
 description: Personal Tech Blog
@@ -72,7 +72,7 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
   rss: true
-  email: "steven@combs.technology"
+  email: "combs.sr@gmail.com"
 #  facebook: daattali
   github: scombs
 #  twitter: daattali
@@ -124,7 +124,7 @@ google_analytics: "UA-125238311-1"
 # --- Comments --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-disqus: "https-combs-technology"
+#disqus: "https-combs-technology"
 
 # To use Facebook Comments, fill in a Facebook App ID
 # fb_comment_id: ""
