@@ -68,7 +68,7 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
   rss: true
-#  email: "combs.sr@gmail.com"
+  email: "blog@combsme.net"
 #  facebook: daattali
   github: scombs
 #  twitter: daattali
