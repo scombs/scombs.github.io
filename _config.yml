@@ -7,7 +7,7 @@ title: scombs.github.io
 description: Personal Tech Blog
 
 # Your name to show in the footer
-author: Some Person
+author: Steven Combs
 
 # --- List of links in the navigation bar --- #
 
@@ -38,8 +38,8 @@ round-avatar: true
 social-network-links:
   email: "blog@combsme.net"
 #  facebook: deanattali
-  github: daattali
-#  twitter: daattali
+  github: scombs
+  twitter: whoisstevecombs
   rss: true
 #  reddit: yourname
 #  linkedin: daattali
